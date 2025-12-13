@@ -1,15 +1,32 @@
 import { User } from "@/types/user";
 import React from "react";
 
-type Props = {
+type DetailState = "empty" | "no-results" | "selected";
+
+type UserDetailProps = {
   user: User | null;
+  hasResults: boolean;
 };
 
-const UserDetail = React.memo(({ user }: Props) => {
-  if (!user) {
+const UserDetail = React.memo(({ user, hasResults }: UserDetailProps) => {
+  const detailState: DetailState = (() => {
+    if (user) return "selected";
+    if (!hasResults) return "no-results";
+    return "empty";
+  })();
+
+  if (detailState === "empty") {
     return (
       <div className="flex h-full items-center justify-center text-sm text-gray-400">
-        Select a user to see details
+        Select a user from the list
+      </div>
+    );
+  }
+
+  if (detailState === "no-results") {
+    return (
+      <div className="flex h-full items-center justify-center text-sm text-gray-400">
+        No users found
       </div>
     );
   }
@@ -23,15 +40,15 @@ const UserDetail = React.memo(({ user }: Props) => {
       <div className="space-y-2 text-sm">
         <div>
           <span className="font-medium text-gray-600">Name:</span>{" "}
-          {user.firstName} {user.lastName}
+          {user!.firstName} {user!.lastName}
         </div>
         <div>
           <span className="font-medium text-gray-600">Email:</span>{" "}
-          {user.email}
+          {user!.email}
         </div>
         <div>
           <span className="font-medium text-gray-600">ID:</span>{" "}
-          {user.id}
+          {user!.id}
         </div>
       </div>
     </div>
