@@ -12,15 +12,15 @@ import { useRenderCount } from "@/hooks/useRenderCount";
 export default function Page() {
   const renderCount = useRenderCount();
   const { users, loading } = useUsers();
-
-  const { search, setSearch, filteredUsers, isPending } =
-    useUserSearch(users);
+  const { search, setSearch, filteredUsers, isPending } = useUserSearch(users);
 
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
 
   const selectedUser = useMemo(() => {
     return users.find(u => u.id === selectedUserId) ?? null;
   }, [users, selectedUserId]);
+
+  const isDetailLoading = loading || (selectedUserId !== null && selectedUser === null);
 
   const handleSelectUser = useCallback((id: number) => {
     setSelectedUserId(id);
@@ -61,6 +61,7 @@ export default function Page() {
           <UserDetail
             user={selectedUser}
             hasResults={filteredUsers.length > 0}
+            isLoading={isDetailLoading}
           />
         </div>
       </div>
