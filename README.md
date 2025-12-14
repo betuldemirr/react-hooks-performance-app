@@ -1,3 +1,89 @@
+# 🚀 React Hooks Performance App
+
+This project is a **performance-focused React / Next.js application** created to explore **advanced hook usage, rendering optimizations, and scalable frontend architecture**.
+
+---
+
+## ⚛️ React Hooks & Performance Techniques
+
+### Hooks Used
+
+- **`useMemo`**
+  - Prevents expensive recalculations
+  - Used for derived data such as filtered user lists
+
+- **`useCallback`**
+  - Stabilizes function references
+  - Prevents unnecessary re-renders in memoized child components
+
+- **`React.memo`**
+  - Used for presentational components (`UserList`, `UserDetail`)
+  - Ensures components re-render only when props actually change
+
+- **`useDeferredValue`**
+  - Defers heavy filtering during search input
+  - Keeps UI responsive when working with large datasets
+
+- **Custom Render Tracking**
+  - `useRenderCount` hook added to observe real render counts
+  - Ensures optimizations are measurable, not assumed
+
+---
+
+## ⚡ Performance-Oriented UI Patterns
+
+- Optimized search with **deferred input**
+- Deterministic UI states:
+  - loading
+  - empty
+  - no-results
+  - selected
+- Reduced unnecessary re-renders through memoization
+- Clear separation between container logic and UI components
+
+---
+
+## ⚡ Performance - UI Patterns
+
+- Optimized search with **deferred input**
+- Deterministic UI states:
+  - loading
+  - empty
+  - no-results
+  - selected
+- Reduced unnecessary re-renders through memoization
+- Clear separation between container logic and UI components
+
+---
+
+## 🧩 Skeleton UI Strategy
+
+- Skeletons are used as **transition states**, not fake loading indicators
+- Focus is on **layout stability** and **perceived performance**
+- No shimmer animations to avoid visual noise
+- Implemented as a **generic, reusable Skeleton component**
+- Easily extensible for future features
+
+---
+
+## 🌐 Data Source
+
+- API: **DummyJSON**
+- Dataset size intentionally large (`limit=1000`)
+- Enables realistic performance testing and optimization scenarios
+
+---
+
+## 🛠 Tech Stack
+
+- **Next.js (App Router)**
+- **React**
+- **TypeScript**
+- **Axios**
+- **Tailwind CSS**
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
